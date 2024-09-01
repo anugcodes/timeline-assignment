@@ -17,7 +17,7 @@ body {
 /* timeline display styles */
 .timeline-window {
   display: flex;
-
+  min-height: 60vh;
   justify-content: center;
   margin-block: 2rem;
   align-items: center;
@@ -56,23 +56,25 @@ body {
   background-color: #a2a2a2;
   display: flex;
   justify-content: space-between;
+  
 }
 .item {
   position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   background-color: #a2a2a2;
   border-radius: 50%;
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   z-index: 1;
   cursor: pointer;
   outline: 4px solid #fff;
+  transition: all 0.5s ease;
 }
 .item:first-child {
-  transform: translateY(-10px) translateX(-0%);
+  transform: translateY(-6px) translateX(-0%);
 }
 .item:last-child {
-  transform: translateY(-10px) translateX(0%);
+  transform: translateY(-6px) translateX(0%);
 }
 
 .circle {
@@ -80,15 +82,17 @@ body {
   justify-content: center;
   align-items: center;
 }
-.item-content {
+p.item-content {
   color: #a2a2a2;
   position: absolute;
   text-wrap: nowrap;
   font-size: small;
   max-width: 6rem;
   top: -1.5rem;
+  transition: all 0.5s ease;
 }
 
+/* animation styles */
 .active {
   display: flex;
 }
@@ -98,6 +102,20 @@ body {
   height: 6px;
   background-color: green;
   width: var(--timelineBarLength);
+  transition: all 0.6s ease;
+}
+.pop-out p{
+  color: green;
+  transform: translateY(-.25rem) scale(1.1);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  transition-delay: .6s;
+}
+.item.pop-out {
+  outline: 4px solid green;
+  background-color: white;
+  transition: all 0.5s ease;
+  transition-delay: 0.6s;
 }
 
 @media screen and (max-width: 768px) {
@@ -120,24 +138,29 @@ body {
     align-items: space-between;
   }
   .item {
-    transform: translateX(-10px);
+    transform: translateX(-6.5px);
   }
   .item:first-child {
-    transform: translateX(-10px) translateY(-0%);
+    transform: translateX(-6.5px) translateY(-0%);
   }
   .item:last-child {
-    transform: translateX(-10px) translateY(0%);
+    transform: translateX(-6.5px) translateY(0%);
   }
   .circle {
     display: block;
   }
-  .item-content {
+  p.item-content {
     top: unset;
     left: 150%;
   }
   .content h2,
   p {
     text-align: center;
+  }
+  .pop-out p {
+    transform: translateX(.5rem) scale(1.1);
+    transition: all 0.3s ease;
+    transition-delay: .6s;
   }
   /* timeline case styles */
   .timeline-window-item {
