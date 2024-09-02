@@ -27,6 +27,8 @@ body {
   gap: 2.5rem;
   align-items: center;
   height: 100%;
+  
+
 }
 .img-container {
   aspect-ratio: 1/1;
@@ -92,9 +94,10 @@ p.item-content {
   transition: all 0.5s ease;
 }
 
-/* animation styles */
+/* transition and animations styles */
 .active {
   display: flex;
+  animation: enter-desktop 0.6s ease;
 }
 .timeline-bar::after {
   position: absolute;
@@ -109,7 +112,7 @@ p.item-content {
   transform: translateY(-.25rem) scale(1.1);
   font-weight: bold;
   transition: all 0.3s ease;
-  transition-delay: .6s;
+  transition-delay: .3s;
 }
 .item.pop-out {
   outline: 4px solid green;
@@ -117,7 +120,16 @@ p.item-content {
   transition: all 0.5s ease;
   transition-delay: 0.6s;
 }
+.item-leave {
+  animation: leave-desktop 0.6s ease;
+}
 
+.active-ring {
+  outline: 4px solid green;
+  background-color: white;
+  transition: all 0.5s ease;
+  transition-delay: 0.6s;
+}
 @media screen and (max-width: 768px) {
   .timeline {
     display: flex;
@@ -174,14 +186,64 @@ p.item-content {
     background-color: green;
     height: var(--timelineBarLength);
   }
+  .active {
+    animation: enter-mobile 0.6s ease;
+  }
+  .item-leave {
+    animation: leave-mobile 0.6s ease;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .item-content {
+  p.item-content {
     transform: rotate(90deg);
     left: 50%;
   }
   .timeline-bar-wrapper {
     min-width: 50px;
+  }
+}
+
+
+/* animatics */
+@keyframes enter-desktop {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes enter-mobile {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes leave-desktop {
+  from {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+@keyframes leave-mobile {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
